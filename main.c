@@ -46,8 +46,7 @@ void init_thread_data(struct s_thread_data *data, char starting_letter, size_t m
     data->max_len = max_len;
     data->starting_letter = starting_letter;
     // The chosen hash function is SHA-256
-	//data->g_evp_md = (EVP_MD *) EVP_sha256();
-    data->g_evp_md = (EVP_MD *) EVP_hs256();
+	data->g_evp_md = (EVP_MD *) EVP_sha256();// HS256
     // Allocate the buffer used to hold the calculated signature
 	data->g_result = malloc(EVP_MAX_MD_SIZE);
     // Allocate the buffer used to hold the generated key
