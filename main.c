@@ -46,7 +46,8 @@ void init_thread_data(struct s_thread_data *data, char starting_letter, size_t m
     data->max_len = max_len;
     data->starting_letter = starting_letter;
     // The chosen hash function is SHA-256
-	data->g_evp_md = (EVP_MD *) EVP_sha256();
+	//data->g_evp_md = (EVP_MD *) EVP_sha256();
+    data->g_evp_md = (EVP_MD *) EVP_hs256();
     // Allocate the buffer used to hold the calculated signature
 	data->g_result = malloc(EVP_MAX_MD_SIZE);
     // Allocate the buffer used to hold the generated key
@@ -152,13 +153,13 @@ char *brute_sequential(struct s_thread_data *data)
 
 void usage(const char *cmd) {
 	printf("%s <token> [alphabet] [max_len]\n"
-				   "Defaults: max_len=6, "
-				   "alphabet=eariotnslcudpmhgbfywkvxzjqEARIOTNSLCUDPMHGBFYWKVXZJQ0123456789", cmd);
+				   "Defaults: max_len=20, "
+				   "alphabet=eariotnslcudpmhgbfywkvxzjqEARIOTNSLCUDPMHGBFYWKVXZJQ0123456789!@#$%^&*()_+-=", cmd);
 }
 
 int main(int argc, char **argv) {
-	size_t max_len = 6;
-	g_alphabet = "eariotnslcudpmhgbfywkvxzjqEARIOTNSLCUDPMHGBFYWKVXZJQ0123456789";
+	size_t max_len = 20;
+	g_alphabet = "eariotnslcudpmhgbfywkvxzjqEARIOTNSLCUDPMHGBFYWKVXZJQ0123456789!@#$%^&*()_+-=";
 
 	if (argc < 2) {
 		usage(argv[0]);
